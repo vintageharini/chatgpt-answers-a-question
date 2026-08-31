@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatGPT Answers a Question — How It Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="signal"><span class="dot"></span>simulated next-word prediction</div>
+    <h1>How ChatGPT answers a question</h1>
+    <p>Large language models don't look answers up — they generate them one word at a time, each word
+    chosen because it's statistically the most likely continuation given everything written so far.
+    Ask something below and watch that word-by-word process happen, live.</p>
+  </div>
+
+  <div class="module">
+    <div class="explain">
+      <h2>How the real thing works</h2>
+      <ul>
+        <li><b>Training</b> — the model reads enormous amounts of text and learns which words tend to
+        follow which, across billions of examples.</li>
+        <li><b>Tokenizing</b> — your question is broken into small chunks called tokens, the model's basic
+        unit of text.</li>
+        <li><b>Prediction</b> — at each step, the model calculates a probability for every possible next
+        token and samples one.</li>
+        <li><b>Repeat</b> — the chosen token is added to the sequence, and the process repeats until the
+        answer is complete.</li>
+      </ul>
+      <p class="note">This demo builds a real, working version of that idea — a bigram model that learns
+      word-to-word transitions from a small built-in corpus, then predicts one word at a time. It's the
+      same mechanism at a tiny scale: real models predict from a vocabulary of tens of thousands of tokens,
+      trained on essentially the whole internet.</p>
+    </div>
+
+    <div class="stage">
+      <textarea id="askInput" rows="2" placeholder="Ask a question…"></textarea>
+      <div class="sample-row">
+        <button class="primary" id="askBtn">Generate answer</button>
+        <button class="ghost" id="sampleBtn">Try an example</button>
+      </div>
+
+      <div class="answer-box" id="answerBox"></div>
+
+      <div class="predict-panel" id="predictPanel" style="display:none;">
+        <div class="predict-label">Candidates for the next word</div>
+        <div class="predict-list" id="predictList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    Built as a teaching demo — a genuine bigram model, not the actual model behind ChatGPT. Source on
+    <a href="#">GitHub</a>.
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
